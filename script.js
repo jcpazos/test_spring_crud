@@ -3,7 +3,7 @@ let entities = [];
 let entityToDelete = null;
 
 // API Base URL - Update this to match your Spring Boot backend
-const API_BASE_URL = 'http://localhost:8080/api/trainer';
+const API_BASE_URL = 'http://localhost:8080/APIRestTrainer/trainer';
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
