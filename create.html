@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Entity - CRUD Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Entity</h1>
+        
+        <form id="createForm" class="form-container">
+            <div class="form-group">
+                <label for="nombre">Name:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <textarea id="correo" name="correo" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña:</label>
+                <textarea id="contraseña" name="contraseña" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create Entity</button>
+                <button type="button" class="btn btn-secondary" onclick="redirectToList()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            createEntity();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Entity - CRUD Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Update Entity</h1>
+        
+        <form id="updateForm" class="form-container">
+            <input type="hidden" id="entityId" name="id">
+            
+            <div class="form-group">
+                <label for="nombre">Name:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <textarea id="correo" name="correo" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña:</label>
+                <textarea id="contraseña" name="contraseña" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Update Entity</button>
+                <button type="button" class="btn btn-secondary" onclick="redirectToList()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('updateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateEntity();
+        });
+
+        // Load entity data when page loads
+        window.onload = function() {
+            loadEntityForUpdate();
+        };
+    </script>
+</body>
+</html>
