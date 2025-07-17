@@ -139,7 +139,7 @@ function displayEntities(entitiesToShow) {
             <td>${entity.nombre}</td>
             <td>${entity.correo}</td>
             <td>
-                <button class="btn btn-edit" onclick="redirectToUpdate(${entity.id})">Edit</button>
+                <button class="btn btn-edit" onclick="redirectToUpdate(${entity})">Edit</button>
                 <button class="btn btn-danger" onclick="showDeleteModal(${entity.id})">Delete</button>
             </td>
         `;
@@ -161,8 +161,8 @@ function redirectToCreate() {
     window.location.href = 'create.html';
 }
 
-function redirectToUpdate(id) {
-    window.location.href = `update.html?id=${id}`;
+function redirectToUpdate(entity) {
+    window.location.href = `update.html?id=${entity.id}&nombre=${encodeURIComponent(entity.nombre)}&correo=${encodeURIComponent(entity.correo)}&contrasena=${encodeURIComponent(entity.contraseña)}`;
 }
 
 function redirectToList() {
@@ -199,6 +199,16 @@ window.onclick = function(event) {
 async function loadEntityForUpdate() {
     const urlParams = new URLSearchParams(window.location.search);
     const entityId = urlParams.get('id');
+    const nombre = urlParams.get('nombre');
+    const correo = urlParams.get('correo');
+    const contrasena = urlParams.get('contrasena');
+
+    const entity = {
+        id: entityId,
+        nombre: nombre,
+        correo: correo,
+        contraseña: contrasena
+    }
     
     if (!entityId) {
         alert('No entity ID provided');
@@ -207,18 +217,11 @@ async function loadEntityForUpdate() {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}/${entityId}`);
-        if (!response.ok) {
-            throw new Error('Failed to fetch entity');
-        }
-        
-        const entity = await response.json();
-        
         // Populate form fields
         document.getElementById('entityId').value = entity.id;
         document.getElementById('nombre').value = entity.nombre;
-        document.getElementById('description').value = entity.description;
-        document.getElementById('status').value = entity.status;
+        document.getElementById('correo').value = entity.correo;
+        document.getElementById('contraseña').value = entity.contraseña;
         
     } catch (error) {
         console.error('Error loading entity for update:', error);
