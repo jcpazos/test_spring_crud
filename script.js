@@ -139,7 +139,7 @@ function displayEntities(entitiesToShow) {
             <td>${entity.nombre}</td>
             <td>${entity.correo}</td>
             <td>
-                <button class="btn btn-edit" onclick="redirectToUpdate(${entity})">Edit</button>
+                <button class="btn btn-edit" onclick="redirectToUpdate(${entity.id}, '${entity.nombre}', '${entity.correo}', '${entity.contraseña}')">Edit</button>
                 <button class="btn btn-danger" onclick="showDeleteModal(${entity.id})">Delete</button>
             </td>
         `;
@@ -161,8 +161,8 @@ function redirectToCreate() {
     window.location.href = 'create.html';
 }
 
-function redirectToUpdate(entity) {
-    window.location.href = `update.html?id=${entity.id}&nombre=${encodeURIComponent(entity.nombre)}&correo=${encodeURIComponent(entity.correo)}&contrasena=${encodeURIComponent(entity.contraseña)}`;
+function redirectToUpdate(id, nombre, correo, contrasena) {
+    window.location.href = `update.html?id=${id}&nombre=${encodeURIComponent(nombre)}&correo=${encodeURIComponent(correo)}&contrasena=${encodeURIComponent(contrasena)}`;
 }
 
 function redirectToList() {
